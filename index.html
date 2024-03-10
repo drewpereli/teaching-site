@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pereli Web Works</title>
   </head>
+
   <body
-    class="flex flex-col h-screen w-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100"
+    class="flex flex-col h-screen w-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors"
   >
-    <header>
-      <button
-        x-text="$store.darkMode.on ? 'dark' : 'light'"
-        @click="$store.darkMode.toggle()"
-      ></button>
+    <header class="px-4 py-2 flex items-center justify-end">
+      <span class="relative h-6 w-6 overflow-hidden rounded-full">
+        <template x-for="state in [true, false]">
+          <button x-data="darkModeToggleButton(state)" x-bind="attrs"></button>
+        </template>
+      </span>
     </header>
     <main class="basis-0 grow flex items-center justify-center">
       <h1>Pereli Web Works</h1>

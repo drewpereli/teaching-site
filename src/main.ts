@@ -34,4 +34,29 @@ Alpine.store('icons', {
   },
 });
 
+// `forDarkModeOn` is whether the button is to toggle dark mode on or off
+Alpine.data('darkModeToggleButton', (forDarkModeOn: boolean) => {
+  const icon: FeatherIconName = forDarkModeOn ? 'moon' : 'sun';
+
+  const translateOutClass = forDarkModeOn
+    ? '-translate-y-full'
+    : 'translate-y-full';
+
+  return {
+    attrs: {
+      ['@click']: '$store.darkMode.toggle()',
+      ['x-html']: `$store.icons.render('${icon}')`,
+      ['x-show']: `$store.darkMode.on === ${forDarkModeOn}`,
+      ['class']: 'absolute duration-500',
+      ['x-cloak']: true,
+      ['x-transition:enter']: 'transition-[opacity,transform]',
+      ['x-transition:enter-start']: `${translateOutClass} opacity-0`,
+      ['x-transition:enter-end']: 'translate-y-0 opacity-100',
+      ['x-transition:leave']: 'transition-[opacity,transform]',
+      ['x-transition:leave-start']: 'translate-y-0 opacity-100',
+      ['x-transition:leave-end']: `${translateOutClass} opacity-0`,
+    },
+  };
+});
+
 Alpine.start();
