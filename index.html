@@ -17,8 +17,52 @@
         </template>
       </span>
     </header>
-    <main class="basis-0 grow flex items-center justify-center">
-      <h1>Pereli Web Works</h1>
+    <main class="basis-0 grow flex flex-col p-4 items-center justify-center">
+      <div class="flex flex-col items-center gap-8">
+        <h1
+          class="text-5xl opacity-0"
+          x-init="$el.classList.add('transition-opacity', 'duration-1000'); $el.classList.remove('opacity-0');"
+        >
+          Pereli Web Works
+        </h1>
+        <h1
+          class="text-3xl opacity-0"
+          x-init="$el.classList.add('transition-opacity', 'duration-1000', 'delay-1000'); $el.classList.remove('opacity-0');"
+        >
+          Web Dev
+        </h1>
+      </div>
+
+      <div
+        x-data="reviews($el)"
+        class="overflow-hidden relative"
+        :style="{width: windowWidth + 'px'}"
+        x-init="onLoad()"
+      >
+        <div
+          class="flex transition-transform duration-500"
+          :style="{transform: getTransformProp(), gap: gap + 'px'}"
+        >
+          <template x-for="(review, idx) in reviews">
+            <div class="shrink-0" :style="{width: cardWidth + 'px'}">
+              <h3 x-text="review.name"></h3>
+              <p x-text="review.review"></p>
+            </div>
+          </template>
+        </div>
+        <button
+          class="absolute left-0 top-0 h-full bg-gradient-to-l from-transparent to-50% to-slate-50 dark:to-slate-950 transition-colors flex items-center pl-5"
+          :style="{width: windowGap + 'px'}"
+          @click="onClickPrevious()" 
+          x-html="$store.icons.render('chevron-left')"
+        ></button>
+        <button
+          class="absolute right-0 top-0 h-full bg-gradient-to-r from-transparent to-50% to-slate-50 dark:to-slate-950 transition-colors flex items-center justify-end pr-5"
+          :style="{width: windowGap + 'px'}"
+          @click="onClickNext()" 
+          x-html="$store.icons.render('chevron-right')"
+        ></button>
+      </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

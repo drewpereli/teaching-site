@@ -3,6 +3,7 @@ import Alpine from 'alpinejs';
 import feather, {
   type FeatherIconNames as FeatherIconName,
 } from 'feather-icons';
+import { generateReviewCarouselData } from './review-carousel';
 
 // @ts-expect-error
 window.Alpine = Alpine;
@@ -58,5 +59,7 @@ Alpine.data('darkModeToggleButton', (forDarkModeOn: boolean) => {
     },
   };
 });
+
+Alpine.data('reviews', generateReviewCarouselData);
 
 Alpine.start();
