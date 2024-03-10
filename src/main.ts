@@ -1,5 +1,8 @@
 import './style.css';
 import Alpine from 'alpinejs';
+import feather, {
+  type FeatherIconNames as FeatherIconName,
+} from 'feather-icons';
 
 // @ts-expect-error
 window.Alpine = Alpine;
@@ -22,6 +25,12 @@ Alpine.store('darkMode', {
   toggle(this: { on: boolean }) {
     this.on = !this.on;
     setDarkModeLocalStorage(this.on);
+  },
+});
+
+Alpine.store('icons', {
+  render(name: FeatherIconName) {
+    return feather.icons[name].toSvg();
   },
 });
 
