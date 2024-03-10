@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" x-data :class="$store.darkMode.on && 'dark'">
   <head>
     <meta charset="UTF-8" />
@@ -6,9 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pereli Web Works</title>
   </head>
-  <body class="flex flex-col h-screen w-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100">
+  <body
+    class="flex flex-col h-screen w-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100"
+  >
     <header>
-      <button x-text="$store.darkMode.on ? 'dark' : 'light'" @click="$store.darkMode.toggle()"></button>
+      <button
+        x-text="$store.darkMode.on ? 'dark' : 'light'"
+        @click="$store.darkMode.toggle()"
+      ></button>
     </header>
     <main class="basis-0 grow flex items-center justify-center">
       <h1>Pereli Web Works</h1>
