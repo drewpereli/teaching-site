@@ -2,6 +2,21 @@ import { setIntervalPausable, debounced } from './async-task-helpers';
 
 const reviews = [
   {
+    name: 'Tyson',
+    review:
+      'Outstanding. Drew is very knowledgeable and helpful. Booking more lessons as we speak!',
+  },
+  {
+    name: 'Dae',
+    review:
+      'Drew explains concepts very clearly and is a great teacher! I have learned a ton from him.',
+  },
+  {
+    name: 'Maddie',
+    review:
+      "Drew is very knowledgeable and also so down to earth. I find his lessons very helpful in getting a better grasp of what I'm learning.",
+  },
+  {
     name: 'Aaron',
     review:
       'This was my first session using TakeLessons. Drew was very knowledgeable, patient and easy going. Highly recommended!',
@@ -20,21 +35,6 @@ const reviews = [
     name: 'Will',
     review:
       'Drew was great! Super knowledgeable and very patient with someone who had a lot of questions. 5 Stars!',
-  },
-  {
-    name: 'Tyson',
-    review:
-      'Outstanding. Drew is very knowledgeable and helpful. Booking more lessons as we speak!',
-  },
-  {
-    name: 'Dae',
-    review:
-      'Drew explains concepts very clearly and is a great teacher! I have learned a ton from him.',
-  },
-  {
-    name: 'Maddie',
-    review:
-      "Drew is very knowledgeable and also so down to earth. I find his lessons very helpful in getting a better grasp of what I'm learning.",
   },
 ];
 
@@ -103,5 +103,26 @@ export function generateReviewCarouselData(): ReviewCarouselData {
     },
     pause() {},
     resumeDebounced() {},
+  };
+}
+
+export function generateReviewLoaderData() {
+  return {
+    currentIdx: 3,
+    reviews,
+    // get currentReviews() {
+    //   return reviews.slice(0, this.currentIdx);
+    // },
+    get hasMore() {
+      return this.currentIdx < reviews.length;
+    },
+    showMore() {
+      if (!this.hasMore) return;
+      const newIdx = Math.min(this.currentIdx + 3, reviews.length);
+      this.currentIdx = newIdx;
+    },
+    showLess() {
+      this.currentIdx = 3;
+    },
   };
 }

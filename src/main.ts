@@ -3,7 +3,10 @@ import Alpine from 'alpinejs';
 import feather, {
   type FeatherIconNames as FeatherIconName,
 } from 'feather-icons';
-import { generateReviewCarouselData } from './review-carousel';
+import {
+  generateReviewCarouselData,
+  generateReviewLoaderData,
+} from './reviews';
 
 // @ts-expect-error
 window.Alpine = Alpine;
@@ -30,8 +33,8 @@ Alpine.store('darkMode', {
 });
 
 Alpine.store('icons', {
-  render(name: FeatherIconName) {
-    return feather.icons[name].toSvg();
+  render(name: FeatherIconName, opts?: Partial<feather.FeatherAttributes>) {
+    return feather.icons[name].toSvg(opts);
   },
 });
 
@@ -60,6 +63,7 @@ Alpine.data('darkModeToggleButton', (forDarkModeOn: boolean) => {
   };
 });
 
-Alpine.data('reviews', generateReviewCarouselData);
+Alpine.data('reviewLoader', generateReviewLoaderData);
+Alpine.data('reviewCarousel', generateReviewCarouselData);
 
 Alpine.start();

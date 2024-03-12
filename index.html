@@ -8,7 +8,7 @@
   </head>
 
   <body
-    class="flex flex-col h-screen w-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors"
+    class="flex flex-col h-screen w-screen bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors"
   >
     <header class="px-4 py-2 flex items-center justify-end">
       <span class="relative h-6 w-6 overflow-hidden rounded-full">
@@ -40,8 +40,8 @@
         </a>
   
         <div
-          x-data="reviews($el)"
-          class="overflow-hidden relative"
+          x-data="reviewCarousel($el)"
+          class="overflow-hidden relative hidden md:block"
           :style="{width: windowWidth + 'px'}"
           x-init="onLoad()"
         >
@@ -68,6 +68,35 @@
             @click="onClickNext()" 
             x-html="$store.icons.render('chevron-right')"
           ></button>
+        </div>
+
+        <div class="flex flex-col gap-4 md:hidden" x-data="reviewLoader()">
+          <template x-for="(review, i) in reviews">
+            <div 
+              class="p-4 bg-white dark:bg-gray-800 rounded border border-slate-300 dark:border-slate-600 shadow-lg space-y-2"
+              x-show="i < currentIdx"
+              x-transition
+            >
+              <div class="flex items-center justify-between">
+                <span x-text="review.name"></span>
+                <div class="flex items-center gap-1 text-yellow-500">
+                  <template x-for="_ in 5">
+                    <i x-html="$store.icons.render('star', {fill: 'currentColor', width: 16, height: 16})"></i>
+                  </template>
+                </div>
+              </div>
+              <p x-text="'&quot;' + review.review + '&quot;'" class="italic"></p>
+            </div>
+          </template>
+
+          <div class="flex items-center justify-end">
+            <button 
+              @click="hasMore ? showMore() : showLess()" 
+              x-text="hasMore ? 'Show More' : 'Show Less'"
+              class="opacit-80 hover:opacity-100 text-sm font-medium"
+            >
+            </button>
+          </div>
         </div>
       </div>
 
