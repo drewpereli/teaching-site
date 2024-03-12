@@ -19,21 +19,24 @@
     </header>
     <main class="basis-0 grow flex flex-col p-4 items-center gap-8">
       <h1
-        class="text-5xl opacity-0"
-        x-init="$el.classList.add('transition-opacity', 'duration-1000'); $el.classList.remove('opacity-0');"
+        class="text-5xl"
+        x-data="fadeInAfter(0)"
+        x-bind="attrs"
       >
         Drew Pereli
       </h1>
       <h1
-        class="text-3xl opacity-0"
-        x-init="$el.classList.add('transition-opacity', 'duration-1000', 'delay-1000'); $el.classList.remove('opacity-0');"
+        class="text-3xl"
+        x-data="fadeInAfter(500)"
+        x-bind="attrs"
       >
         Web Dev Teacher
       </h1>
 
       <div 
         class="flex flex-col items-center gap-8"
-        x-init="$el.classList.add('transition-opacity', 'duration-1000', 'delay-1000'); $el.classList.remove('opacity-0');"
+        x-data="fadeInAfter(1000)"
+        x-bind="attrs"
       >
         <a class="w-full h-20 text-xl font-bold rounded flex items-center justify-center p-4 bg-gradient-to-br from-indigo-600 to-indigo-800 dark:to-indigo-400 text-white/90 hover:-translate-y-1 transition-transform" href="https://tl.page/andrew-p89" target="_blank">
           BOOK A LESSON

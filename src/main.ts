@@ -1,5 +1,5 @@
 import './style.css';
-import Alpine from 'alpinejs';
+import Alpine, { Magics } from 'alpinejs';
 import feather, {
   type FeatherIconNames as FeatherIconName,
 } from 'feather-icons';
@@ -66,4 +66,23 @@ Alpine.data('darkModeToggleButton', (forDarkModeOn: boolean) => {
 Alpine.data('reviewLoader', generateReviewLoaderData);
 Alpine.data('reviewCarousel', generateReviewCarouselData);
 
+Alpine.data('fadeInAfter', function (this: Magics<unknown>, ms: number) {
+  const el = this.$el;
+  return {
+    attrs: {
+      'x-init': async () => {
+        el.classList.add('opacity-0');
+        await nextTickPromise();
+        el.style.transitionDelay = `${ms}ms`;
+        el.classList.add('transition-opacity', 'duration-1000');
+        el.classList.remove('opacity-0');
+      },
+    },
+  };
+});
+
 Alpine.start();
+
+async function nextTickPromise() {
+  return new Promise<void>((res) => Alpine.nextTick(res));
+}
