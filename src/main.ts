@@ -7,6 +7,7 @@ import {
   generateReviewCarouselData,
   generateReviewLoaderData,
 } from './reviews';
+import { getContactFormData } from './contact-form';
 
 // @ts-expect-error
 window.Alpine = Alpine;
@@ -80,6 +81,8 @@ Alpine.data('fadeInAfter', function (this: Magics<unknown>, ms: number) {
     },
   };
 });
+
+Alpine.data('contactForm', getContactFormData);
 
 Alpine.start();
 
