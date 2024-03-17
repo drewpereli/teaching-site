@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" x-data :class="$store.darkMode.on && 'dark'">
   <head>
     <meta charset="UTF-8" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="description" content="Drew Pereli, professional web developer and teacher">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="description" content="Drew Pereli, professional web developer and teacher" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drew Pereli</title>
   </head>
@@ -23,50 +23,38 @@
       </span>
     </header>
     <main class="basis-0 grow flex flex-col p-4 items-center gap-8">
-      <h1
-        class="text-5xl text-center"
-        x-data="fadeInAfter(0)"
-        x-bind="attrs"
-      >
-        Drew Pereli
-      </h1>
-      <h1
-        class="text-3xl text-center"
-        x-data="fadeInAfter(500)"
-        x-bind="attrs"
-      >
-        Web Developer and Teacher
-      </h1>
+      <h1 class="text-5xl text-center" x-data="fadeInAfter(0)" x-bind="attrs">Drew Pereli</h1>
+      <h1 class="text-3xl text-center" x-data="fadeInAfter(500)" x-bind="attrs">Web Developer and Teacher</h1>
 
-      <div 
-        class="flex flex-col items-center gap-8"
-        x-data="fadeInAfter(1000)"
-        x-bind="attrs"
-      >
-        <a class="w-full h-20 text-xl text-center font-bold rounded flex items-center justify-center p-4 bg-gradient-to-br from-indigo-600 to-indigo-800 dark:to-indigo-400 text-white/90 hover:-translate-y-1 transition-transform" href="https://tl.page/andrew-p89" target="_blank">
+      <div class="flex flex-col items-center gap-8" x-data="fadeInAfter(1000)" x-bind="attrs">
+        <a
+          class="w-full h-20 text-xl text-center font-bold rounded flex items-center justify-center p-4 bg-gradient-to-br from-indigo-600 to-indigo-800 dark:to-indigo-400 text-white/90 hover:-translate-y-1 transition-transform"
+          href="https://tl.page/andrew-p89"
+          target="_blank"
+        >
           BOOK A LESSON
         </a>
 
-        <button 
+        <button
           class="w-full h-20 text-xl text-center font-bold rounded flex items-center justify-center p-4 bg-gradient-to-tr from-gray-600 to-gray-800 dark:to-gray-400 text-white/90 hover:-translate-y-1 transition-transform"
           @click="showContactForm = true"
           aria-label="open contact form"
         >
           GET IN TOUCH
         </button>
-  
+
         <div
           x-data="reviewCarousel($el)"
           class="overflow-hidden relative hidden md:block"
           :style="{width: windowWidth + 'px'}"
           x-init="onLoad()"
         >
-          <div
-            class="flex transition-transform duration-500"
-            :style="{transform: getTransformProp(), gap: gap + 'px'}"
-          >
+          <div class="flex transition-transform duration-500" :style="{transform: getTransformProp(), gap: gap + 'px'}">
             <template x-for="(review, idx) in reviews">
-              <div class="shrink-0 p-4 bg-white dark:bg-gray-800 rounded border border-slate-300 dark:border-slate-600 shadow-lg space-y-2" :style="{width: cardWidth + 'px'}">
+              <div
+                class="shrink-0 p-4 bg-white dark:bg-gray-800 rounded border border-slate-300 dark:border-slate-600 shadow-lg space-y-2"
+                :style="{width: cardWidth + 'px'}"
+              >
                 <div class="flex items-center justify-between">
                   <span x-text="review.name"></span>
                   <div class="flex items-center gap-1 text-yellow-500">
@@ -82,22 +70,22 @@
           <button
             class="absolute left-0 top-0 h-full bg-gradient-to-l from-transparent to-50% to-slate-100 dark:to-slate-950 transition-colors flex items-center pl-5"
             :style="{width: windowGap + 'px'}"
-            @click="onClickPrevious()" 
+            @click="onClickPrevious()"
             x-html="$store.icons.render('chevron-left')"
             aria-label="previous review"
           ></button>
           <button
             class="absolute right-0 top-0 h-full bg-gradient-to-r from-transparent to-50% to-slate-100 dark:to-slate-950 transition-colors flex items-center justify-end pr-5"
             :style="{width: windowGap + 'px'}"
-            @click="onClickNext()" 
+            @click="onClickNext()"
             x-html="$store.icons.render('chevron-right')"
             aria-label="next review"
-            ></button>
+          ></button>
         </div>
 
         <div class="flex flex-col gap-4 md:hidden" x-data="reviewLoader()">
           <template x-for="(review, i) in reviews">
-            <div 
+            <div
               class="p-4 bg-white dark:bg-gray-800 rounded border border-slate-300 dark:border-slate-600 shadow-lg space-y-2"
               x-show="i < currentIdx"
               x-transition
@@ -115,19 +103,23 @@
           </template>
 
           <div class="flex items-center justify-end">
-            <button 
-              @click="hasMore ? showMore() : showLess()" 
+            <button
+              @click="hasMore ? showMore() : showLess()"
               x-text="hasMore ? 'Show More' : 'Show Less'"
               class="opacit-80 hover:opacity-100 text-sm font-medium"
-            >
-            </button>
+            ></button>
           </div>
         </div>
       </div>
-
     </main>
 
-    <div class="fixed w-screen h-screen px-1 bg-black/20 dark:bg-black/50" x-show="showContactForm" x-cloak x-transition x-transition.opacity>
+    <div
+      class="fixed w-screen h-screen px-1 bg-black/20 dark:bg-black/50"
+      x-show="showContactForm"
+      x-cloak
+      x-transition
+      x-transition.opacity
+    >
       <form
         x-data="contactForm()"
         class="bg-white dark:bg-slate-800 p-4 rounded-b-lg space-y-4 shadow-lg border-b border-x border-slate-400 dark:border-slate-500 w-[40rem] max-w-full mx-auto"
@@ -137,12 +129,18 @@
       >
         <div x-id="['email-input']" class="input-group">
           <label :for="$id('email-input')">Email</label>
-          <input required x-model="email" type="email" :id="$id('email-input')" @invalid="showInvalidStyles = true">
+          <input required x-model="email" type="email" :id="$id('email-input')" @invalid="showInvalidStyles = true" />
         </div>
 
         <div x-id="['content-input']" class="input-group">
           <label :for="$id('content-input')">Message</label>
-          <textarea required rows="7" x-model="content" :id="$id('content-input')" @invalid="showInvalidStyles = true"></textarea>
+          <textarea
+            required
+            rows="7"
+            x-model="content"
+            :id="$id('content-input')"
+            @invalid="showInvalidStyles = true"
+          ></textarea>
         </div>
 
         <div class="flex items-start justify-between gap-4">
@@ -150,20 +148,17 @@
             <!-- Put the status class on a different element from the transition,
             because the transition messes up some of the classes -->
             <div
-              x-show="status === statusItem" 
+              x-show="status === statusItem"
               x-cloak
               x-transition:leave.duration.0ms
               x-transition:enter.duration.300ms
             >
-              <div 
-                x-text="statusText(statusItem)" 
-                :class="statusClass(statusItem)"
-              ></div>
+              <div x-text="statusText(statusItem)" :class="statusClass(statusItem)"></div>
             </div>
           </template>
-          
-          <button 
-            class="shrink-0 text-sm rounded flex items-center justify-center px-4 py-1 bg-gradient-to-br from-indigo-600 to-indigo-800 dark:to-indigo-400 text-white/90 hover:-translate-y-1 disabled:hover:translate-y-0 disabled:opacity-75 transition-transform" 
+
+          <button
+            class="shrink-0 text-sm rounded flex items-center justify-center px-4 py-1 bg-gradient-to-br from-indigo-600 to-indigo-800 dark:to-indigo-400 text-white/90 hover:-translate-y-1 disabled:hover:translate-y-0 disabled:opacity-75 transition-transform"
             type="submit"
             :disabled="status === 'sending'"
           >

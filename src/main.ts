@@ -1,12 +1,7 @@
 import './style.css';
 import Alpine, { Magics } from 'alpinejs';
-import feather, {
-  type FeatherIconNames as FeatherIconName,
-} from 'feather-icons';
-import {
-  generateReviewCarouselData,
-  generateReviewLoaderData,
-} from './reviews';
+import feather, { type FeatherIconNames as FeatherIconName } from 'feather-icons';
+import { generateReviewCarouselData, generateReviewLoaderData } from './reviews';
 import { getContactFormData } from './contact-form';
 
 // @ts-expect-error -- Add alpine to window so its globally available for debugging.
@@ -21,9 +16,7 @@ function setDarkModeLocalStorage(val: boolean) {
   localStorage.setItem('darkMode', JSON.stringify(val));
 }
 
-const startInDarkMode =
-  getDarkModeLocalStorage() ??
-  !!window?.matchMedia('(prefers-color-scheme: dark)').matches;
+const startInDarkMode = getDarkModeLocalStorage() ?? !!window?.matchMedia('(prefers-color-scheme: dark)').matches;
 
 Alpine.store('darkMode', {
   on: startInDarkMode,
@@ -43,9 +36,7 @@ Alpine.store('icons', {
 Alpine.data('darkModeToggleButton', (forDarkModeOn: boolean) => {
   const icon: FeatherIconName = forDarkModeOn ? 'moon' : 'sun';
 
-  const translateOutClass = forDarkModeOn
-    ? '-translate-y-full'
-    : 'translate-y-full';
+  const translateOutClass = forDarkModeOn ? '-translate-y-full' : 'translate-y-full';
 
   return {
     attrs: {

@@ -45,8 +45,7 @@ export function getContactFormData() {
         default: null,
         sending: 'Sending',
         success: "Your message has been sent! I'll get back to you ASAP.",
-        error:
-          'There was an error sending your message. Please try again later.',
+        error: 'There was an error sending your message. Please try again later.',
       }[status];
     },
     statusClass(status: Status) {

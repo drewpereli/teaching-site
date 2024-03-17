@@ -3,13 +3,11 @@ import { setIntervalPausable, debounced } from './async-task-helpers';
 const reviews = [
   {
     name: 'Tyson',
-    review:
-      'Outstanding. Drew is very knowledgeable and helpful. Booking more lessons as we speak!',
+    review: 'Outstanding. Drew is very knowledgeable and helpful. Booking more lessons as we speak!',
   },
   {
     name: 'Dae',
-    review:
-      'Drew explains concepts very clearly and is a great teacher! I have learned a ton from him.',
+    review: 'Drew explains concepts very clearly and is a great teacher! I have learned a ton from him.',
   },
   {
     name: 'Maddie',
@@ -33,8 +31,7 @@ const reviews = [
   },
   {
     name: 'Will',
-    review:
-      'Drew was great! Super knowledgeable and very patient with someone who had a lot of questions. 5 Stars!',
+    review: 'Drew was great! Super knowledgeable and very patient with someone who had a lot of questions. 5 Stars!',
   },
 ];
 
@@ -70,8 +67,7 @@ export function generateReviewCarouselData(): ReviewCarouselData {
       this.currentIdx = nextIdx;
     },
     previous() {
-      const prevIdx =
-        (this.currentIdx - 1 + this.reviews.length) % this.reviews.length;
+      const prevIdx = (this.currentIdx - 1 + this.reviews.length) % this.reviews.length;
       this.currentIdx = prevIdx;
     },
     onClickNext() {
@@ -85,16 +81,12 @@ export function generateReviewCarouselData(): ReviewCarouselData {
       this.resumeDebounced();
     },
     onLoad() {
-      const { pause, resume } = setIntervalPausable(
-        this.next.bind(this),
-        showCardsFor
-      );
+      const { pause, resume } = setIntervalPausable(this.next.bind(this), showCardsFor);
       this.pause = pause;
       this.resumeDebounced = debounced(resume, showCardsFor);
     },
     getTransformProp() {
-      const val =
-        -this.currentIdx * (this.cardWidth + this.gap) + this.windowGap;
+      const val = -this.currentIdx * (this.cardWidth + this.gap) + this.windowGap;
       return `translateX(${val}px)`;
     },
     cardWidth: 280,
