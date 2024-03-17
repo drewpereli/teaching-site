@@ -32,6 +32,7 @@
           class="w-full h-20 text-xl text-center font-bold rounded flex items-center justify-center p-4 bg-gradient-to-br from-indigo-600 to-indigo-800 dark:to-indigo-400 text-white/90 hover:-translate-y-1 transition-transform"
           href="https://tl.page/andrew-p89"
           target="_blank"
+          data-umami-event="Book lesson button"
         >
           BOOK A LESSON
         </a>
@@ -40,6 +41,7 @@
           class="w-full h-20 text-xl text-center font-bold rounded flex items-center justify-center p-4 bg-gradient-to-tr from-gray-600 to-gray-800 dark:to-gray-400 text-white/90 hover:-translate-y-1 transition-transform"
           @click="showContactForm = true"
           aria-label="open contact form"
+          data-umami-event="Open contact form button"
         >
           GET IN TOUCH
         </button>
@@ -108,6 +110,7 @@
               @click="hasMore ? showMore() : showLess()"
               x-text="hasMore ? 'Show More' : 'Show Less'"
               class="opacit-80 hover:opacity-100 text-sm font-medium"
+              data-umami-event="Contact form submission"
             ></button>
           </div>
         </div>

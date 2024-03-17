@@ -35,6 +35,8 @@ export function getContactFormData() {
         this.status = 'success';
       } catch (error) {
         this.status = 'error';
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).umami.track('Contact form error', { error: (error as any).message });
       } finally {
         this.showInvalidStyles = false;
         setTimeout(() => (this.status = 'default'), 5_000);
