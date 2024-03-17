@@ -61,20 +61,27 @@
             :style="{transform: getTransformProp(), gap: gap + 'px'}"
           >
             <template x-for="(review, idx) in reviews">
-              <div class="shrink-0" :style="{width: cardWidth + 'px'}">
-                <h3 x-text="review.name"></h3>
-                <p x-text="review.review"></p>
+              <div class="shrink-0 p-4 bg-white dark:bg-gray-800 rounded border border-slate-300 dark:border-slate-600 shadow-lg space-y-2" :style="{width: cardWidth + 'px'}">
+                <div class="flex items-center justify-between">
+                  <span x-text="review.name"></span>
+                  <div class="flex items-center gap-1 text-yellow-500">
+                    <template x-for="_ in 5">
+                      <i x-html="$store.icons.render('star', {fill: 'currentColor', width: 16, height: 16})"></i>
+                    </template>
+                  </div>
+                </div>
+                <p x-text="'&quot;' + review.review + '&quot;'" class="italic"></p>
               </div>
             </template>
           </div>
           <button
-            class="absolute left-0 top-0 h-full bg-gradient-to-l from-transparent to-50% to-slate-50 dark:to-slate-950 transition-colors flex items-center pl-5"
+            class="absolute left-0 top-0 h-full bg-gradient-to-l from-transparent to-50% to-slate-100 dark:to-slate-950 transition-colors flex items-center pl-5"
             :style="{width: windowGap + 'px'}"
             @click="onClickPrevious()" 
             x-html="$store.icons.render('chevron-left')"
           ></button>
           <button
-            class="absolute right-0 top-0 h-full bg-gradient-to-r from-transparent to-50% to-slate-50 dark:to-slate-950 transition-colors flex items-center justify-end pr-5"
+            class="absolute right-0 top-0 h-full bg-gradient-to-r from-transparent to-50% to-slate-100 dark:to-slate-950 transition-colors flex items-center justify-end pr-5"
             :style="{width: windowGap + 'px'}"
             @click="onClickNext()" 
             x-html="$store.icons.render('chevron-right')"

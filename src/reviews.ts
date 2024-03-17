@@ -60,9 +60,11 @@ type ReviewCarouselData = {
 };
 
 export function generateReviewCarouselData(): ReviewCarouselData {
+  const showCardsFor = 7_000;
+
   return {
     reviews,
-    currentIdx: 1,
+    currentIdx: 0,
     next() {
       const nextIdx = (this.currentIdx + 1) % this.reviews.length;
       this.currentIdx = nextIdx;
@@ -83,16 +85,19 @@ export function generateReviewCarouselData(): ReviewCarouselData {
       this.resumeDebounced();
     },
     onLoad() {
-      const { pause, resume } = setIntervalPausable(this.next.bind(this), 5000);
+      const { pause, resume } = setIntervalPausable(
+        this.next.bind(this),
+        showCardsFor
+      );
       this.pause = pause;
-      this.resumeDebounced = debounced(resume, 5000);
+      this.resumeDebounced = debounced(resume, showCardsFor);
     },
     getTransformProp() {
       const val =
         -this.currentIdx * (this.cardWidth + this.gap) + this.windowGap;
       return `translateX(${val}px)`;
     },
-    cardWidth: 240,
+    cardWidth: 280,
     gap: 16,
     windowScale: 1.65,
     get windowWidth() {
