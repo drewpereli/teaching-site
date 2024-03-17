@@ -9,7 +9,7 @@ import {
 } from './reviews';
 import { getContactFormData } from './contact-form';
 
-// @ts-expect-error
+// @ts-expect-error -- Add alpine to window so its globally available for debugging.
 window.Alpine = Alpine;
 
 function getDarkModeLocalStorage() {
