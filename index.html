@@ -2,6 +2,7 @@
 <html lang="en" x-data :class="$store.darkMode.on && 'dark'">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -25,6 +26,7 @@
   <body
     class="flex flex-col h-screen w-screen bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors"
     x-data="{showContactForm: false}"
+    x-cloak
   >
     <header class="px-4 py-2 flex items-center justify-end">
       <span class="relative h-6 w-6 overflow-hidden rounded-full">

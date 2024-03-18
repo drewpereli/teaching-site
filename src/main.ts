@@ -1,4 +1,3 @@
-import './style.css';
 import Alpine, { Magics } from 'alpinejs';
 import feather, { type FeatherIconNames as FeatherIconName } from 'feather-icons';
 import { generateReviewCarouselData, generateReviewLoaderData } from './reviews';
