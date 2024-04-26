@@ -28,6 +28,8 @@ export function getContactFormData() {
       try {
         this.status = 'sending';
 
+        (window as any).umami.track('Contact form submission data', { email: this.email, content: this.content });
+
         await sendEmail(this.email, this.content);
 
         this.email = '';
